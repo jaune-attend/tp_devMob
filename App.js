@@ -1,12 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AppNavigator from './navigation/AppNavigator';
+import {Provider } from 'react-redux';
+import Store from './store/ConfigStore'
 
 class App extends React.Component {
 
   render() {
     return (
-      <AppNavigator />
+      <Provider store={Store}>
+        <AppNavigator />
+      </Provider>
     );
   }
 }

@@ -3,7 +3,6 @@ import { Text, View, Button, AsyncStorage, FlatList, RefreshControl } from 'reac
 import Icon from 'react-native-vector-icons/Ionicons';
 import { NavigationEvents } from 'react-navigation';
 import ItemWeather from '../components/ItemWeather';
-import {connect} from 'react-redux';
 
 class FavoritesPage extends React.Component {
 
@@ -61,20 +60,22 @@ class FavoritesPage extends React.Component {
     }
 
     render() {
+
         return (
-                <View style={{ flex: 1 }}>
-                    <NavigationEvents onDidFocus={() => this.refresh()} />
-                    <FlatList data={this.state.cities}
-                        refreshControl={<RefreshControl refreshing={this.state.refreshing}
-                            onRefresh={() => this.refresh()} />}
-                        renderItem={(element) => (
 
-                            <ItemWeather key={element.item} city={element.item}
-                                onDelete={(city) => this.deleteCity(city)} />
+            <View style={{ flex: 1 }}>
+                <NavigationEvents onDidFocus={() => this.refresh()} />
+                <FlatList data={this.state.cities}
+                    refreshControl={<RefreshControl refreshing={this.state.refreshing}
+                        onRefresh={() => this.refresh()} />}
+                    renderItem={(element) => (
 
-                        )} />
-                    <Button title="Ajouter" onPress={() => this.onAddPress()} />
-                </View>
+                        <ItemWeather key={element.item} city={element.item}
+                            onDelete={(city) => this.deleteCity(city)} />
+
+                    )} />
+                <Button title="Ajouter" onPress={() => this.onAddPress()} />
+            </View>
         );
     }
 }

@@ -5,6 +5,8 @@ import { ImgWeather } from '../pages/HomePage';
 import { ActivityIndicator } from 'react-native-paper';
 import { Text, View, Button, StyleSheet } from 'react-native';
 import { SwipeRow } from 'react-native-swipe-list-view';
+import {connect} from 'react-redux'
+
 
 class ItemWeather extends Component {
     static propTypes = {
@@ -18,10 +20,17 @@ class ItemWeather extends Component {
         weather: null
     }
 
+    _ActionWeather(){
+        const action = {type: "WEATHER", value: this.state.weather};
+        this.props.dispatch(action);
+    }
+
     componentDidMount() {
         this.serv.getWeatherHome(this.props.city).then((resp) => {
             this.setState({ weather: resp.data });
         });
+        // const action = {type: "WEATHER", value: this.props.city};
+        // this.props.dispatch(action);
     }
 
     render() {
@@ -66,4 +75,11 @@ const styles = StyleSheet.create({
         color: '#FFF',
     }
 });
-export default ItemWeather;
+
+const mapStateToProp = (state) => {
+    return {
+        //cities_info: state.cities_info
+    };
+}
+
+export default connect(mapStateToProp)(ItemWeather);

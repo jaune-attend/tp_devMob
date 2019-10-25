@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const key = '3d13d25c0c34fa3c3db183ad6b8cdff4';
 const url = `https://api.openweathermap.org/data/2.5/weather?appid=${key}&units=metric`;
 
 class WeatherService {
 
-    getWeatherHome(city = 'marseille') {
+    getWeatherHome(city = 'Nanterre') {
         return axios.get(`${url}&q=${city}`);
 
         /* return {
